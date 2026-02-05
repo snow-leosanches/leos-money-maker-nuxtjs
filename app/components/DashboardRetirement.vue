@@ -1,12 +1,19 @@
 <template>
   <div class="space-y-8">
-    <div>
-      <h1 class="text-2xl font-bold text-foreground">
-        Retirement & Education
-      </h1>
-      <p class="text-muted text-sm mt-1">
-        Portfolio composition for your 401(k) and 529 accounts.
-      </p>
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-foreground">
+          Retirement & Education
+        </h1>
+        <p class="text-muted text-sm mt-1">
+          Portfolio composition for your 401(k) and 529 accounts.
+        </p>
+      </div>
+      <UButton
+        to="/dashboard/retirement/funds"
+        label="Modify fund selection"
+        trailing-icon="i-lucide-arrow-right"
+      />
     </div>
 
     <div class="grid lg:grid-cols-2 gap-8">
@@ -29,8 +36,8 @@
         </template>
         <div class="space-y-4">
           <div
-            v-for="item in allocation401k"
-            :key="item.label"
+            v-for="item in allocation401kWithNames"
+            :key="item.fundId + item.percent"
             class="flex items-center gap-4"
           >
             <div class="flex-1 min-w-0">
@@ -68,8 +75,8 @@
         </template>
         <div class="space-y-4">
           <div
-            v-for="item in allocation529"
-            :key="item.label"
+            v-for="item in allocation529WithNames"
+            :key="item.fundId + item.percent"
             class="flex items-center gap-4"
           >
             <div class="flex-1 min-w-0">
@@ -92,22 +99,12 @@
 </template>
 
 <script setup lang="ts">
-const allocation401k = [
-  { label: 'US Large Cap', percent: 45 },
-  { label: 'International Stock', percent: 20 },
-  { label: 'US Bonds', percent: 25 },
-  { label: 'Short-term / Cash', percent: 10 }
-]
-
-const allocation529 = [
-  { label: 'Age-based Equity', percent: 55 },
-  { label: 'US Stock Index', percent: 25 },
-  { label: 'Bond Index', percent: 15 },
-  { label: 'Money Market', percent: 5 }
-]
-
-const total401k = 247500
-const total529 = 42800
+const {
+  allocation401kWithNames,
+  allocation529WithNames,
+  total401k,
+  total529
+} = useRetirementAllocation()
 
 function formatUsd(n: number) {
   return new Intl.NumberFormat('en-US', {
