@@ -14,7 +14,7 @@
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <UButton
-              to="#cta"
+              to="/login"
               size="xl"
               trailing-icon="i-lucide-arrow-right"
               class="w-full sm:w-auto"
@@ -161,7 +161,7 @@
         variant="subtle"
         :links="[{
           label: 'Open an account',
-          to: '#',
+          to: '/login',
           trailingIcon: 'i-lucide-arrow-right',
           size: 'lg'
         }, {

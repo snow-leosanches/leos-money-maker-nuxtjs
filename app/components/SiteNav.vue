@@ -15,9 +15,9 @@
 
 <script setup lang="ts">
 const navItems = [
-  { label: 'Invest', to: '#invest' },
-  { label: 'Crypto', to: '#crypto' },
-  { label: 'Retirement', to: '#retirement' },
-  { label: 'Pricing', to: '#pricing' }
+  { label: 'Invest', to: '/invest' },
+  { label: 'Crypto', to: '/crypto' },
+  { label: 'Retirement', to: '/retirement' },
+  { label: 'Pricing', to: '/pricing' }
 ]
 </script>

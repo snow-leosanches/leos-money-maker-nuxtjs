@@ -71,7 +71,7 @@ useSeoMeta({
             class="font-medium"
           />
           <UButton
-            to="/"
+            to="/login"
             label="Open account"
             size="sm"
             class="font-medium"
@@ -93,10 +93,10 @@ useSeoMeta({
       </template>
       <template #right>
         <div class="flex flex-col sm:flex-row gap-4 text-sm text-muted">
-          <NuxtLink to="#invest" class="hover:text-foreground transition-colors">Invest</NuxtLink>
-          <NuxtLink to="#crypto" class="hover:text-foreground transition-colors">Crypto</NuxtLink>
-          <NuxtLink to="#retirement" class="hover:text-foreground transition-colors">Retirement</NuxtLink>
-          <NuxtLink to="#pricing" class="hover:text-foreground transition-colors">Pricing</NuxtLink>
+          <NuxtLink to="/invest" class="hover:text-foreground transition-colors">Invest</NuxtLink>
+          <NuxtLink to="/crypto" class="hover:text-foreground transition-colors">Crypto</NuxtLink>
+          <NuxtLink to="/retirement" class="hover:text-foreground transition-colors">Retirement</NuxtLink>
+          <NuxtLink to="/pricing" class="hover:text-foreground transition-colors">Pricing</NuxtLink>
         </div>
       </template>
     </UFooter>
