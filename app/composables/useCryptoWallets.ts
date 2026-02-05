@@ -6,6 +6,7 @@ export interface CryptoWallet {
   priceUsd: number
   change24h: number
   icon: string
+  sparkline?: number[]
 }
 
 const WALLETS: Omit<CryptoWallet, 'priceUsd' | 'change24h'>[] = [
@@ -28,22 +29,29 @@ function randomPercent() {
 
 export function useCryptoWallets() {
   const wallets = ref<CryptoWallet[]>([])
+  const { tickerBySymbol, connected: binanceConnected } = useBinanceCryptoStream()
 
   function init() {
     wallets.value = WALLETS.map((w) => {
       const base = BASE_PRICES[w.id] ?? 0
       const change24h = randomPercent()
       const priceUsd = base * (1 + change24h / 100)
-      return {
-        ...w,
-        priceUsd,
-        change24h
-      }
+      return { ...w, priceUsd, change24h }
     })
   }
 
   function tick() {
-    wallets.value = wallets.value.map((w) => {
+    const ticker = tickerBySymbol.value
+    wallets.value = WALLETS.map((w) => {
+      const binance = ticker[w.id]
+      if (binance && binance.priceUsd > 0) {
+        return {
+          ...w,
+          priceUsd: binance.priceUsd,
+          change24h: binance.change24h,
+          sparkline: binance.sparkline
+        }
+      }
       const base = BASE_PRICES[w.id] ?? 0
       const change24h = randomPercent()
       const priceUsd = base * (1 + change24h / 100)
@@ -53,9 +61,11 @@ export function useCryptoWallets() {
 
   onMounted(() => {
     init()
-    const interval = setInterval(tick, 3000)
+    const interval = setInterval(tick, 1000)
     onUnmounted(() => clearInterval(interval))
   })
 
-  return { wallets }
+  watch(tickerBySymbol, () => tick(), { deep: true })
+
+  return { wallets, binanceConnected }
 }

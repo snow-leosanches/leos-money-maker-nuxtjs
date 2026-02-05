@@ -1,12 +1,15 @@
 <template>
   <div class="space-y-8">
-    <div>
-      <h1 class="text-2xl font-bold text-foreground">
-        Today's Markets
-      </h1>
-      <p class="text-muted text-sm mt-1">
-        Live prices update every 3 seconds. Demo data.
-      </p>
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-foreground">
+          Today's Markets
+        </h1>
+        <p class="text-muted text-sm mt-1">
+          Live prices update every 3 seconds. Demo data.
+        </p>
+      </div>
+      <StockSearchBar />
     </div>
 
     <!-- Ticker strip (duplicated for seamless loop) -->
@@ -26,6 +29,9 @@
         </template>
       </div>
     </div>
+
+    <!-- Portfolio -->
+    <PortfolioPanel />
 
     <!-- Stock table with sparklines -->
     <UCard>
