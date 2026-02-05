@@ -111,6 +111,18 @@ Preview production build:
 pnpm preview
 ```
 
+## Deploy on Vercel
+
+The app is ready for [Vercel](https://vercel.com) with zero extra config. Vercel detects Nuxt (Nitro) and uses the correct build settings.
+
+1. Push your repo to GitHub, GitLab, or Bitbucket.
+2. [Import the project](https://vercel.com/new) in Vercel and connect the repo.
+3. (Optional) Add environment variables in **Project → Settings → Environment Variables**:
+   - `NUXT_PUBLIC_SNOWPLOW_COLLECTOR_URL` — Your Snowplow collector URL to enable analytics (see `.env.example`).
+4. Deploy. Preview deployments are created for every branch; production deploys from your production branch (e.g. `main`).
+
+The repo includes a `vercel.json` that sets the Nuxt framework and uses `yarn` for install/build. Node 20+ is required (see `engines` in `package.json`).
+
 ## Scripts
 
 | Script           | Description                          |

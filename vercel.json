@@ -1,0 +1,5 @@
+{
+  "framework": "nuxtjs",
+  "installCommand": "yarn install",
+  "buildCommand": "yarn run build"
+}
