@@ -29,6 +29,7 @@ const route = useRoute()
 const router = useRouter()
 
 const { currentCustomer, customerProfiles } = useAuth()
+const { trackProductSignup } = useTrackProductSignup()
 
 const currentProfile = computed(() =>
   customerProfiles.find((p) => p.id === currentCustomer.value)
@@ -46,6 +47,18 @@ const addedProductBanner = computed(() => {
 })
 
 const addedBannerOpen = ref(true)
+
+// Fire Snowplow custom_event when user signs up for a product they don't have
+watch(
+  addedProductBanner,
+  (bannerName) => {
+    if (bannerName && import.meta.client) {
+      const added = route.query.added as string
+      trackProductSignup(route.path, added, bannerName)
+    }
+  },
+  { immediate: true }
+)
 
 function onAddedBannerClose(isOpen: boolean) {
   if (!isOpen) router.replace({ path: '/dashboard', query: {} })

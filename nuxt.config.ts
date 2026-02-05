@@ -5,6 +5,13 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
 
+  runtimeConfig: {
+    public: {
+      /** Set via NUXT_PUBLIC_SNOWPLOW_COLLECTOR_URL to enable Snowplow analytics */
+      snowplowCollectorUrl: ''
+    }
+  },
+
   devtools: {
     enabled: true
   },

@@ -2,6 +2,12 @@
 const { isAuthenticated, logout } = useAuth()
 const router = useRouter()
 
+// Avoid hydration mismatch: auth comes from localStorage (client-only), so server
+// always sees unauthenticated. Only show auth-dependent nav after mount.
+const mounted = ref(false)
+onMounted(() => { mounted.value = true })
+const showAsAuthenticated = computed(() => mounted.value && isAuthenticated.value)
+
 function logoutAndGoHome() {
   logout()
   router.push('/')
@@ -43,7 +49,7 @@ useSeoMeta({
 
       <template #right>
         <UColorModeButton />
-        <template v-if="isAuthenticated">
+        <template v-if="showAsAuthenticated">
           <UButton
             to="/dashboard"
             label="Dashboard"

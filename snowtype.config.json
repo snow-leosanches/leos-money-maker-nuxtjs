@@ -1,0 +1,13 @@
+{
+  "igluCentralSchemas": [],
+  "dataStructures": [],
+  "repositories": [],
+  "eventSpecificationIds": [],
+  "dataProductIds": [
+    "d9f5e443-f18b-40a8-84dc-22ca8513dd3f"
+  ],
+  "organizationId": "b12539df-a711-42bd-bdfa-175308c55fd5",
+  "tracker": "@snowplow/browser-tracker",
+  "language": "typescript",
+  "outpath": "./snowtype"
+}
