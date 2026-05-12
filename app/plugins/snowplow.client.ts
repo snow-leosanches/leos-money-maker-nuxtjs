@@ -3,8 +3,7 @@ import { SnowplowEcommercePlugin } from '@snowplow/browser-plugin-snowplow-ecomm
 import { PerformanceNavigationTimingPlugin } from '@snowplow/browser-plugin-performance-navigation-timing'
 import { SiteTrackingPlugin } from '@snowplow/browser-plugin-site-tracking'
 import { SignalsPlugin } from '@snowplow/signals-browser-plugin'
-
-const APP_ID = 'leos-money-maker-nuxtjs'
+import { SNOWPLOW_TRACKER_ID } from '~/utils/snowplow-tracker-id'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig()
@@ -14,8 +13,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     return
   }
 
-  const tracker = newTracker(APP_ID, collectorUrl, {
-    appId: APP_ID,
+  const tracker = newTracker(SNOWPLOW_TRACKER_ID, collectorUrl, {
+    appId: SNOWPLOW_TRACKER_ID,
     contexts: {
       session: true,
       browser: true

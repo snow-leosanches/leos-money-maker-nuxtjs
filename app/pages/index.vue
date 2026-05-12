@@ -14,7 +14,7 @@
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <UButton
-              to="/login"
+              to="/register"
               size="xl"
               trailing-icon="i-lucide-arrow-right"
               class="w-full sm:w-auto"
@@ -42,45 +42,45 @@
     <section id="invest" class="relative scroll-mt-20">
       <span id="crypto" class="absolute top-0 left-0 pointer-events-none" aria-hidden="true" />
       <span id="retirement" class="absolute top-0 left-0 pointer-events-none" aria-hidden="true" />
-    <UPageSection
-      title="One platform for every goal"
-      description="Whether you're building wealth, saving for retirement, or planning for education—we've got you covered."
-      class="border-b border-default"
-    >
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-        <UCard
-          v-for="service in services"
-          :key="service.id"
-          class="overflow-hidden hover:border-primary-500/30 transition-colors"
-          :ui="{ body: 'p-0', footer: 'p-5 pt-0' }"
-        >
-          <div
-            class="h-32 flex items-center justify-center text-primary-500"
-            :class="service.bgClass"
+      <UPageSection
+        title="One platform for every goal"
+        description="Whether you're building wealth, saving for retirement, or planning for education—we've got you covered."
+        class="border-b border-default"
+      >
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <UCard
+            v-for="service in services"
+            :key="service.id"
+            class="overflow-hidden hover:border-primary-500/30 transition-colors"
+            :ui="{ body: 'p-0', footer: 'p-5 pt-0' }"
           >
-            <UIcon :name="service.icon" class="size-12" />
-          </div>
-          <template #footer>
-            <h3 class="font-semibold text-lg text-foreground">
-              {{ service.title }}
-            </h3>
-            <p class="text-muted text-sm mt-1">
-              {{ service.description }}
-            </p>
-            <UButton
-              :to="service.ctaTo"
-              variant="link"
-              color="primary"
-              size="sm"
-              trailing-icon="i-lucide-arrow-right"
-              class="mt-3 -ml-2 p-0 h-auto"
+            <div
+              class="h-32 flex items-center justify-center text-primary-500"
+              :class="service.bgClass"
             >
-              {{ service.ctaLabel }}
-            </UButton>
-          </template>
-        </UCard>
-      </div>
-    </UPageSection>
+              <UIcon :name="service.icon" class="size-12" />
+            </div>
+            <template #footer>
+              <h3 class="font-semibold text-lg text-foreground">
+                {{ service.title }}
+              </h3>
+              <p class="text-muted text-sm mt-1">
+                {{ service.description }}
+              </p>
+              <UButton
+                :to="service.ctaTo"
+                variant="link"
+                color="primary"
+                size="sm"
+                trailing-icon="i-lucide-arrow-right"
+                class="mt-3 -ml-2 p-0 h-auto"
+              >
+                {{ service.ctaLabel }}
+              </UButton>
+            </template>
+          </UCard>
+        </div>
+      </UPageSection>
     </section>
 
     <!-- Features -->
@@ -161,7 +161,7 @@
         variant="subtle"
         :links="[{
           label: 'Open an account',
-          to: '/login',
+          to: '/register',
           trailingIcon: 'i-lucide-arrow-right',
           size: 'lg'
         }, {

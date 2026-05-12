@@ -1,10 +1,13 @@
-export type CustomerType = 'stock' | 'crypto' | 'retirement' | null
+export type DemoCustomerId = 'stock' | 'crypto' | 'retirement'
+export type CustomerType = DemoCustomerId | null
 
 export interface CustomerProfile {
-  id: CustomerType
+  id: DemoCustomerId
   name: string
   description: string
   icon: string
+  /** Synthetic inbox for Snowplow Customer Identification demos (not a real mailbox). */
+  demoEmail: string
 }
 
 export const customerProfiles: CustomerProfile[] = [
@@ -12,19 +15,22 @@ export const customerProfiles: CustomerProfile[] = [
     id: 'stock',
     name: 'Traditional Stock Investor',
     description: 'Stocks, ETFs, and options',
-    icon: 'i-lucide-line-chart'
+    icon: 'i-lucide-line-chart',
+    demoEmail: 'buffett-would-tap-this-row@leos-demo.test'
   },
   {
     id: 'crypto',
     name: 'Crypto Customer',
     description: 'Bitcoin, Ethereum, and more',
-    icon: 'i-lucide-bitcoin'
+    icon: 'i-lucide-bitcoin',
+    demoEmail: 'wen-moon-gas-fees-ate-my-snack@leos-demo.test'
   },
   {
     id: 'retirement',
     name: '401(k) & 529 Investor',
     description: 'Retirement and education savings',
-    icon: 'i-lucide-piggy-bank'
+    icon: 'i-lucide-piggy-bank',
+    demoEmail: 'max-the-match-or-we-riot-peacefully@leos-demo.test'
   }
 ]
 
@@ -41,12 +47,10 @@ function getStored(): CustomerType {
 export function useAuth() {
   const currentCustomer = useState<CustomerType>('auth-customer', () => getStored())
 
-  function loginAs(customer: CustomerType) {
-    if (customer) {
-      currentCustomer.value = customer
-      if (import.meta.client && typeof localStorage !== 'undefined') {
-        localStorage.setItem(AUTH_KEY, customer)
-      }
+  function loginAs(customer: DemoCustomerId) {
+    currentCustomer.value = customer
+    if (import.meta.client && typeof localStorage !== 'undefined') {
+      localStorage.setItem(AUTH_KEY, customer)
     }
   }
 

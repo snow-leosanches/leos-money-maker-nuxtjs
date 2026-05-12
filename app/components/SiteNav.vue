@@ -18,6 +18,7 @@ const navItems = [
   { label: 'Invest', to: '/invest' },
   { label: 'Crypto', to: '/crypto' },
   { label: 'Retirement', to: '/retirement' },
+  { label: 'Markets', to: '/predictions' },
   { label: 'Pricing', to: '/pricing' }
 ]
 </script>

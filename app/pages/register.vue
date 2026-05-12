@@ -2,11 +2,14 @@
   <div class="min-h-[80vh] flex flex-col items-center justify-center py-12 px-4">
     <UContainer class="max-w-lg w-full">
       <div class="text-center mb-10">
+        <p class="text-sm font-medium text-primary-600 dark:text-primary-400 mb-2">
+          Instant onboarding · Zero paperwork
+        </p>
         <h1 class="text-2xl font-bold text-foreground mb-2">
-          Customer Portal Login
+          Open your demo account
         </h1>
         <p class="text-muted">
-          Select a customer to authenticate as a demo user
+          Pick a vibe. We mint a ridiculous synthetic email, stash your persona, and ping Snowplow Identities—then drop you on the dashboard.
         </p>
       </div>
 
@@ -16,44 +19,38 @@
           :key="profile.id"
           size="xl"
           variant="outline"
-          class="w-full justify-start gap-4 h-auto py-4 px-5"
+          class="w-full justify-start gap-4 h-auto py-4 px-5 border-dashed"
           @click="enterAsDemoCustomer(profile.id)"
         >
           <span
-            class="flex items-center justify-center size-12 rounded-lg bg-primary-500/10 text-primary-600 dark:text-primary-400 shrink-0"
+            class="flex items-center justify-center size-12 rounded-lg bg-violet-500/10 text-violet-600 dark:text-violet-400 shrink-0"
           >
             <UIcon :name="profile.icon" class="size-6" />
           </span>
           <span class="text-left flex-1 min-w-0">
             <span class="font-semibold block text-foreground">
-              {{ profile.name }}
+              Register as {{ profile.name }}
             </span>
             <span class="text-sm text-muted font-normal block">
               {{ profile.description }}
             </span>
             <span class="text-xs text-muted/90 font-mono mt-1.5 block truncate" :title="profile.demoEmail">
-              {{ profile.demoEmail }}
+              Your demo identity: {{ profile.demoEmail }}
             </span>
           </span>
-          <UIcon name="i-lucide-chevron-right" class="size-5 text-muted shrink-0" />
+          <UIcon name="i-lucide-party-popper" class="size-5 text-muted shrink-0" />
         </UButton>
       </div>
 
       <p class="text-sm text-muted text-center mt-6">
-        Each persona maps to a fake inbox so we can fire a
-        <span class="text-foreground/80">Customer Identification</span>
-        event when you sign in (Snowplow Identities demo).
+        Same flow as login—registration is a label swap for the demo. One Customer Identification event per choice so you can watch identities attach in the pipeline.
       </p>
 
       <p class="text-sm text-muted text-center mt-4">
-        New here?
-        <NuxtLink to="/register" class="text-primary-600 dark:text-primary-400 font-medium hover:underline">
-          Open a demo account
+        Already “registered”?
+        <NuxtLink to="/login" class="text-primary-600 dark:text-primary-400 font-medium hover:underline">
+          Head to login
         </NuxtLink>
-      </p>
-
-      <p class="text-sm text-muted text-center mt-2">
-        This is a demo. No password required.
       </p>
     </UContainer>
   </div>
@@ -65,8 +62,8 @@ const { enterAsDemoCustomer } = useDemoCustomerPortal()
 const router = useRouter()
 
 useSeoMeta({
-  title: 'Log in — Leo\'s Money Maker',
-  description: 'Demo customer portal login with Snowplow Customer Identification per persona.'
+  title: 'Open demo account — Leo\'s Money Maker',
+  description: 'Demo registration with Snowplow Customer Identification for each synthetic persona email.'
 })
 
 onMounted(() => {
